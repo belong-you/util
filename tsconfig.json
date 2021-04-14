@@ -3,7 +3,7 @@
         "target": "es3",  // 配置编译目标代码的版本标准
         "module": "esnext",  // 编译目标使用的模块化标准
         "lib": ["es2016"],  // 类型检查标准
-        "outDir": "./js",  // 编译后文件目录
+        "outDir": "./dist",  // 编译后文件目录
         "moduleResolution": "classic",  // 模块解析策略方式
         "strictNullChecks": true,  // 更加严格的空类型检查
         // "removeComments": true,  // 移除注释
@@ -16,5 +16,5 @@
         "downlevelIteration": true
     },
     // "files": ["./src/index.js"],  // 编译指定文件
-    "include": ["ts"], // 编译指定目录
+    "include": ["src"], // 编译指定目录
 }

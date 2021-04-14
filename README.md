@@ -1,11 +1,9 @@
 ## 调用方式：
-- ts 项目： import util from '@/util/ts';
-- js 项目： import util from '@/util/js';
+- ts 引入： import util from '@/util/src';
+- js 引入： import util from '@/util/dist';
 
 ## 编译：
-```
-tsc
-```
+`npm run build` or `yarn build`
 
 ## 文件目录：
 ```
@@ -19,7 +17,7 @@ tsc
 │  ├─ dom.ts
 │  ├─ index.ts
 │  ├─ mdExplain.ts
-│  ├─ type_array.ts
+│  ├─ type_array.ts  // 关于 JS 基本类型的方法都以 type_ 开头
 │  ├─ type_date.ts
 │  ├─ type_number.ts
 │  ├─ type_object.ts

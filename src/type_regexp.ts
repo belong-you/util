@@ -68,3 +68,4 @@ export const ishasClass = (el: any, className: string) => {
     let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
     return reg.test(el.className)
 }
+

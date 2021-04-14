@@ -32,11 +32,11 @@ export var createStipulateLengthArr = function (len) { return __spread(new Array
 export var arrSort = function (arr, num) {
     if (num === void 0) { num = 1; }
     if (num === 1)
-        return arr.sort(function (a, b) { return a - b; });
+        return __spread(arr).sort(function (a, b) { return a - b; });
     if (num === 2)
-        return arr.sort(function (a, b) { return b - a; });
+        return __spread(arr).sort(function (a, b) { return b - a; });
     if (num === 3)
-        return Math.random() - 0.5;
+        return __spread(arr).sort(function () { return Math.random() - 0.5; });
 };
 /**
  * 数组中最大的数
@@ -59,7 +59,13 @@ export var arrDropDimension = function (arr) { return Array.prototype.concat.app
  */
 export var arrUnique = function (arr) { return __spread(new Set(arr)); };
 /**
- * 创建指定长度的随机数组，且规定范围
+ * 去除数组中的无效值
+ * @param arr
+ * @returns
+ */
+export var validArray = function (arr) { return arr.filter(Boolean); };
+/**
+ * 创建指定长度的随机数的数组，且规定范围
  * @param len 指定长度
  * @param max 最大值（取不到）
  * @param min 最小值
@@ -98,4 +104,77 @@ export function getArrayContentIndex(arr, val) {
     }
     return -1;
 }
+/**
+ * 转换为二维数组
+ * @param arr 数组
+ * @param count 多少个数为一组
+ */
+export var multArray = function (arr, count) {
+    if (count === void 0) { count = 2; }
+    var pages = [];
+    arr.forEach(function (item, index) {
+        var page = Math.floor(index / count);
+        !pages[page] && (pages[page] = []);
+        pages[page].push(item);
+    });
+    return pages;
+};
+/**
+ * 检查两个数组各项是否相等
+ * @param a 数组1
+ * @param b 数组2
+ * @returns
+ */
+export var isArrayEqual = function (a, b, res) {
+    if (res === void 0) { res = true; }
+    if (a.length !== b.length)
+        return res = false;
+    var s = new Set(b);
+    if (a.find(function (x) { return !s.has(x); }))
+        return res = false;
+    return res;
+};
+// isArrayEqual([6, 5, 2, 4, 1, 3], [1, 2, 3, 4, 5, 6])  //--> false
+/**
+ * 检查数组各项相等
+ * @param arr
+ * @returns
+ */
+export var allEqual = function (arr) { return arr.every(function (item) { return item === arr[0]; }); };
+// allEqual([1, 1, 1, 1])  //--> true
+/**
+ * 两个数组的 交集
+ * @param a 数组1
+ * @param b 数组2
+ * @returns
+ */
+export var diffArray = function (a, b) {
+    var s = new Set(b);
+    var arr = a.filter(function (x) { return !s.has(x); });
+    return arr;
+};
+// diffArray(['a', 2, 6, 7], ['a', 2, 9, 'b'])  //--> [6, 7]
+/**
+ * 两个数组的 并集
+ * @param a
+ * @param b
+ * @returns
+ */
+export var haveArr = function (a, b) {
+    var s = new Set(b);
+    return a.filter(function (x) { return s.has(x); });
+};
+// haveArr([1, 2, 6, 7], [1, 2, 9, 5])  //--> [1, 2]
+/**
+ * 数组对象去重
+ * @param arr 数组
+ * @param key 去重的对象属性值
+ * @returns
+ */
+export var uniqueArrayObject = function (arr, key) {
+    return arr.reduce(function (acc, cur) {
+        var ids = acc.map(function (item) { return item[key]; });
+        return ids.includes(cur[key]) ? acc : __spread(acc, [cur]);
+    }, []);
+};
 //# sourceMappingURL=type_array.js.map
